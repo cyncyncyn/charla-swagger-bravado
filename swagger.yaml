@@ -1,0 +1,120 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Star Wars API 
+host: localhost:8000
+basePath: /api
+schemes:
+  - http
+paths:
+  /characters:
+    get:
+      operationId: list
+      description:  Retrieve the list of characters
+      responses:
+        200:
+          description: List of characters
+          schema:
+            type: array
+            items:
+                $ref: "#/definitions/Character"
+    post:
+      description: Create a new character
+      operationId: create
+      parameters:
+        - in: body
+          name: character
+          description: Character object to be added
+          required: true
+          schema:
+            $ref: '#/definitions/Character'
+      responses:
+        201:
+          description: Character added 
+          schema:
+            $ref: '#/definitions/Character'
+        400:
+          description: TODO
+  /characters/{character_id}:
+    get:
+      summary: Find a character by id
+      description: Returns a single character
+      operationId: retrieve 
+      parameters:
+        - name: character_id
+          in: path
+          description: ID of character to return
+          required: true
+          type: integer
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Character'
+        400:
+          description: Invalid ID supplied
+        404:
+          description: Character not found
+    put:
+      description: Updates a character
+      operationId: update 
+      parameters:
+        - in: path
+          name: character_id
+          description: Pet id to delete
+          required: true
+          type: integer
+        - in: body
+          name: character
+          description: Character object to be edited
+          required: true
+          schema:
+            $ref: '#/definitions/Character'
+      responses:
+        200:
+          description: Character Updated
+        400:
+          description: Invalid ID supplied
+        404:
+          description: Character not found
+        405:
+          description: Validation exception
+    delete:
+      description: Deletes a character
+      operationId: delete
+      parameters:
+        - in: path
+          name: character_id
+          description: Character id to delete
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Deleted
+        400:
+          description: Invalid ID supplied
+        404:
+          description: Character not found
+definitions:
+  Character:
+    type: object
+    required:
+      - name
+      - species
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      species:
+        type: string
+        description: pet status in the store
+        enum:
+          - Human
+          - Robot
+          - Wookie 
+          - Ewok
+          - "Yoda's species"
+        default: Human
+      photo_url:
+        type: string
