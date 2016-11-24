@@ -7,7 +7,7 @@ basePath: /api
 schemes:
   - http
 paths:
-  /characters:
+  /characters/:
     get:
       operationId: list
       description:  Retrieve the list of characters
@@ -35,7 +35,7 @@ paths:
             $ref: '#/definitions/Character'
         400:
           description: TODO
-  /characters/{character_id}:
+  /characters/{character_id}/:
     get:
       summary: Find a character by id
       description: Returns a single character
