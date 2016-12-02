@@ -5,4 +5,4 @@
 * Swagger_PyConAr.pdf -> Slides de la charla
 * Bravado.ipynb -> jupyter-notebook con ejemplos en Bravado
 * test_api.py -> ejemplo de uso de Bravado con Pytest
-  
+* API usada en el ejemplo: https://github.com/cyncyncyn/exampleapi
